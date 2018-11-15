@@ -1,0 +1,26 @@
+{
+  "task1": {
+    "task": "Walk the dog",
+    "isCompleted": true
+  },
+  "task2": {
+    "task": "Feed the pigs",
+    "isCompleted": false
+  },
+  "task3": {
+    "task": "Cut the rats",
+    "isCompleted": true
+  },
+  "task4": {
+    "task": "Bake the bread",
+    "isCompleted": true
+  },
+  "task5": {
+    "task": "Dry the beef",
+    "isCompleted": false
+  },
+  "task6": {
+    "task": "Smell the fear",
+    "isCompleted": true
+  }
+}
