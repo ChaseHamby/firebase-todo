@@ -1,26 +1,32 @@
 {
   "task1": {
     "task": "Walk the dog",
+    "imageUrl": "https://cdn2-www.dogtime.com/assets/uploads/2009/07/teach-dog-walk-leash.jpg",
     "isCompleted": true
   },
   "task2": {
     "task": "Feed the pigs",
+    "imageUrl": "https://cdn2-www.dogtime.com/assets/uploads/2009/07/teach-dog-walk-leash.jpg",
     "isCompleted": false
   },
   "task3": {
     "task": "Cut the rats",
+    "imageUrl": "https://cdn2-www.dogtime.com/assets/uploads/2009/07/teach-dog-walk-leash.jpg",
     "isCompleted": true
   },
   "task4": {
     "task": "Bake the bread",
+    "imageUrl": "https://cdn2-www.dogtime.com/assets/uploads/2009/07/teach-dog-walk-leash.jpg",
     "isCompleted": true
   },
   "task5": {
     "task": "Dry the beef",
+    "imageUrl": "https://cdn2-www.dogtime.com/assets/uploads/2009/07/teach-dog-walk-leash.jpg",
     "isCompleted": false
   },
   "task6": {
     "task": "Smell the fear",
+    "imageUrl": "https://cdn2-www.dogtime.com/assets/uploads/2009/07/teach-dog-walk-leash.jpg",
     "isCompleted": true
   }
 }

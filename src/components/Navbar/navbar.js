@@ -12,6 +12,12 @@ const navbarEvents = () => {
       }).catch((err) => {
         console.error(err);
       });
+    } else if (e.target.id === 'navbar-button-tasks') {
+      $('#auth').hide();
+      $('#tasks').show();
+    } else {
+      $('#auth').show();
+      $('#tasks').hide();
     }
   });
 };
