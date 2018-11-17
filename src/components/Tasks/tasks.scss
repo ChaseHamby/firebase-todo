@@ -1,0 +1,13 @@
+@import '../../styles/variables';
+
+.card-img {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+#task-card {
+  width: 18%;
+  margin: 6%;
+  border-radius: 3px;
+}
