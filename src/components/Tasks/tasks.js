@@ -3,9 +3,9 @@ import $ from 'jquery';
 import './tasks.scss';
 import getTasksfromDb from '../../data/taskData';
 
-const displayTasks = (arrayOfTasks) => {
+const displayTasks = (tasks) => {
   let newString = '';
-  arrayOfTasks.forEach((task) => {
+  tasks.forEach((task) => {
     newString += `
       <div class="col-sm-2">
        <div class="saved-character" style="width: 18rem">
@@ -26,10 +26,17 @@ const displayTasks = (arrayOfTasks) => {
 const initializeTasks = () => {
   getTasksfromDb()
     .then((data) => {
-      displayTasks(data.data);
+      displayTasks(data);
     }).catch((error) => {
       console.error(error);
     });
 };
 
-export default { initializeTasks };
+const taskButton = () => {
+  $('#navbar-button-tasks').on('click', () => {
+    console.log('work?');
+    initializeTasks();
+  });
+};
+
+export default { taskButton };
