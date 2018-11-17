@@ -4,10 +4,11 @@
   position: relative;
   height: 250px;
   overflow: hidden;
+  border-block-end: 5px;
 }
 
 #task-card {
   width: 18%;
   margin: 6%;
-  border-radius: 3px;
+  border-block-end: 5px;
 }
