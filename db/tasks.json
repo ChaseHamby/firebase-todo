@@ -1,5 +1,4 @@
 {
-  "tasks": {
     "task1": {
       "task": "Walk the dog",
       "imageUrl": "https://cdn2-www.dogtime.com/assets/uploads/2009/07/teach-dog-walk-leash.jpg",
@@ -25,5 +24,4 @@
       "imageUrl": "https://cdn2-www.dogtime.com/assets/uploads/2009/07/teach-dog-walk-leash.jpg",
       "isCompleted": true
     }
-  }
 }
