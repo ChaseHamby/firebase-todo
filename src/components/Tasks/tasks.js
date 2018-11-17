@@ -7,8 +7,8 @@ const displayTasks = (tasks) => {
   let newString = '';
   tasks.forEach((task) => {
     newString += `
-      <div class="col-sm-2">
-       <div class="saved-character" style="width: 18rem">
+      <div id="task-card" class="col-sm-2">
+       <div class="saved-task" style="width: 18rem">
         <h3 class="placeholder">"${task.task}"</h3>
         <div class="placeholder">
           <img class="card-img" src="${task.imageUrl}">
