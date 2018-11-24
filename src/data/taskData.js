@@ -19,11 +19,22 @@ const getTasksFromDb = () => new Promise((resolve, reject) => {
         });
       }
       resolve(allTasksArray);
-      console.log('here', allTasksArray);
     })
     .catch((err) => {
       reject(err);
     });
 });
 
-export default getTasksFromDb;
+const getSingleTaskFromDb = taskId => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/tasks/${taskId}.json`)
+    .then((result) => {
+      const singleTask = result.data;
+      singleTask.id = taskId;
+      resolve(singleTask);
+    })
+    .catch((error) => {
+      reject(error);
+    });
+});
+
+export default { getTasksFromDb, getSingleTaskFromDb };
