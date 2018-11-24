@@ -3,6 +3,18 @@ import $ from 'jquery';
 import './tasks.scss';
 import getTasksfromDb from '../../data/taskData';
 
+const inputField = () => {
+  const inputString = `
+    <div class="input-group m-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroup-sizing-default">Add Task</span>
+    </div>
+    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+  `;
+  $('#input').html(inputString);
+};
+
 const displayTasks = (tasks) => {
   let newString = '';
   tasks.forEach((task) => {
@@ -26,6 +38,7 @@ const displayTasks = (tasks) => {
 const initializeTasks = () => {
   getTasksfromDb()
     .then((data) => {
+      inputField();
       displayTasks(data);
     }).catch((error) => {
       console.error(error);
@@ -34,7 +47,6 @@ const initializeTasks = () => {
 
 const taskButton = () => {
   $('#navbar-button-tasks').on('click', () => {
-    console.log('work?');
     initializeTasks();
   });
 };
