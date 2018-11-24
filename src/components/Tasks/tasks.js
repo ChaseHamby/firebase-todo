@@ -1,7 +1,8 @@
 import 'bootstrap';
 import $ from 'jquery';
 import './tasks.scss';
-import getTasksfromDb from '../../data/taskData';
+import tasksData from '../../data/taskData';
+import authHelpers from '../Auth/authHelpers';
 
 const inputField = () => {
   const inputString = `
@@ -13,6 +14,34 @@ const inputField = () => {
     </div>
   `;
   $('#input').html(inputString);
+};
+
+const printSingleTask = (task) => {
+  const taskString = `
+    <div id="task-card" class="col-sm-2">
+    <div class="saved-task" style="width: 18rem">
+    <h3 class="placeholder" data-card-id=${task.id}>"${task.task}"</h3>
+    <div class="placeholder">
+      <img class="card-img" src="${task.imageUrl}">
+    </div>
+    <div class="placeholder">
+      <h5 class="task-completed">"${task.isCompleted}"</h5>
+    </div>
+    </div>
+  </div>
+  `;
+  $('#tasks').append(taskString);
+};
+
+const getSingleTask = (e) => {
+  const taskId = e.target.dataset.cardId;
+  tasksData.getSingleTaskFromDb(taskId)
+    .then((singleTask) => {
+      printSingleTask(singleTask);
+    })
+    .catch((error) => {
+      console.error('error in getting a task', error);
+    });
 };
 
 const displayTasks = (tasks) => {
@@ -36,9 +65,11 @@ const displayTasks = (tasks) => {
 };
 
 const initializeTasks = () => {
-  getTasksfromDb()
+  const uid = authHelpers.getCurrentUid();
+  tasksData.getTasksfromDb(uid)
     .then((data) => {
       inputField();
+      getSingleTask();
       displayTasks(data);
     }).catch((error) => {
       console.error(error);
