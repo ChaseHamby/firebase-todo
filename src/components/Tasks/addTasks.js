@@ -28,7 +28,7 @@ const formForTask2 = (task) => {
   <div class="form-row2">
   <div class="form-group2">
     <label  for="form-task-id"></label>
-    <input type="text" class="form-control" value="${task.id}" id="form-task-id" placeholder="Taskid">
+    <input type="text" class="form-control" value="${task.uid}" id="form-task-id" placeholder="Taskid">
     <label for="form-task-complete"></label>
     <input type="text" class="form-control" value="${task.isCompleted}" id="form-task-complete" placeholder="Task Complete true or false">
     <label for="form-task-name"></label>
@@ -41,14 +41,14 @@ const formForTask2 = (task) => {
 
 const form2Task = () => {
   const taskFromForm = {
-    id: $('#form-task-id').val(),
+    uid: $('#form-task-id').val(),
     isCompleted: $('#form-task-complete').val(),
     task: $('#form-task-name').val(),
   };
   return taskFromForm;
 };
 
-const addNewTask = () => {
+const addNewTasks = () => {
   const newTask = form2Task();
   taskData.addNewTask(newTask)
     .then(() => {
@@ -65,7 +65,6 @@ const deleteTask = (idToDelete) => {
     .then(() => {
       console.log('Delete button is wokring');
       taskStuff.printTaskSecond();
-      // domTasks2.domTasks();
     })
     .catch((error) => {
       console.error('error in deleting task', error);
@@ -75,11 +74,11 @@ const deleteTask = (idToDelete) => {
 // SHOW THE FORM
 
 const editTask = (idToEdit) => {
-  taskData.getSingleTask(idToEdit)
+  taskData.getSingleTaskFromDb(idToEdit)
     .then((singleTask) => {
-      let domString = '<h2>Edit Friend</h2>';
+      let domString = '<h2>Edit Task</h2>';
       domString += formForTask2(singleTask);
-      domString += `<button id="save-edit-task" data-single-edit-id=${singleTask.id}>Save Friend</button>`;
+      domString += `<button id="save-edit-task" data-single-edit-id=${singleTask.id}>Save Task</button>`;
       $('#add-edit-task').html(domString).show();
       $('.form-row').hide();
     })
@@ -103,7 +102,7 @@ const updateTask = (taskId) => {
 };
 
 const newLocationFunction = () => {
-  $('body').on('click', '#addButtons', () => { addNewTask(); });
+  $('body').on('click', '#addButtons', () => { addNewTasks(); });
   $('body').on('click', '#task-del-but', (e) => { const idNeeded = $(e.target).closest('.deleteThis'); const idNeeded2 = idNeeded[0].id; deleteTask(idNeeded2); });
   $('body').on('click', '#edit-task-but', (e) => { const idNeeded = $(e.target).closest('.editThis'); const idNeeded2 = idNeeded[0].id; editTask(idNeeded2); });
   $('body').on('click', '#save-edit-task', () => { const idNeeded = $('#save-edit-task').data('single-edit-id'); updateTask(idNeeded); });

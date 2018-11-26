@@ -12,7 +12,7 @@ const printTask = (dataArray) => {
   let domString = '';
   dataArray.forEach((data) => {
     domString += `
-    <div id="${data.id}"class="card mt-3 deleteThis editThis" style="width: 18rem;">
+    <div id="${data.id}"class="card m-5 deleteThis editThis">
     <div class="card-body">
         <p class="card-text">${data.task}</p>
         <div class="form-group form-check">
@@ -26,7 +26,7 @@ const printTask = (dataArray) => {
     `;
   });
   $('#tasks').html(domString);
-  $('#extra').html(forms.formForTask());
+  // $('#extra').html(forms.formForTask());
 };
 
 const printTaskSecond = () => {
@@ -39,7 +39,7 @@ const printTaskSecond = () => {
     });
 };
 
-const domTasks = () => {
+const showTasks = () => {
   taskData.getTasksFromDb()
     .then((data) => {
       printTask(data);
@@ -61,7 +61,7 @@ const loginButton = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
     checkLoginStatus();
-    domTasks();
+    showTasks();
   });
 };
 
@@ -69,5 +69,5 @@ export default {
   printTask,
   printTaskSecond,
   loginButton,
-  domTasks,
+  showTasks,
 };

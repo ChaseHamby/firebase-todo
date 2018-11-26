@@ -19,9 +19,9 @@ const navbarEvents = () => {
       });
     } else {
       $('#auth').show();
-      $('#taskPrint').show();
+      $('#taskPrint').hide();
       $('#tasks').hide();
-      $('#navbar-button-tasks').show();
+      $('#navbar-button-tasks').hide();
       $('#navbar-button-logout').show();
     }
   });
