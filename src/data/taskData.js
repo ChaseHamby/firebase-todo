@@ -18,6 +18,7 @@ const getTasksFromDb = () => new Promise((resolve, reject) => {
           tasksArray.push(newTask);
         });
       }
+      console.log('tasks?', tasksArray);
       resolve(tasksArray);
     })
     .catch((err) => {

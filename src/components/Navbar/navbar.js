@@ -1,23 +1,28 @@
+
 import $ from 'jquery';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import './navbar.scss';
+import getTasks from '../../data/taskData';
 
 const navbarEvents = () => {
   $('.nav-link').on('click', (e) => {
     if (e.target.id === 'navbar-button-logout') {
       firebase.auth().signOut().then(() => {
         $('#auth').show();
+        $('#taskPrint').hide();
         $('#tasks').hide();
+        $('#navbar-button-tasks').hide();
+        $('#navbar-button-logout').show();
       }).catch((err) => {
-        console.error(err);
+        console.error('you still logged in', err);
       });
-    } else if (e.target.id === 'navbar-button-tasks') {
-      $('#auth').hide();
-      $('#tasks').show();
     } else {
       $('#auth').show();
+      $('#taskPrint').show();
       $('#tasks').hide();
+      $('#navbar-button-tasks').show();
+      $('#navbar-button-logout').show();
     }
   });
 };
@@ -25,7 +30,7 @@ const navbarEvents = () => {
 const createNavbar = () => {
   const domString = `
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Getting Stuff Done</a>
+      <a class="navbar-brand" href="#">To-Do List</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -36,9 +41,9 @@ const createNavbar = () => {
           </li>
           <li class="nav-item">
             <a id="navbar-button-tasks" class="nav-link">Tasks</a>
-          </li>
+          </li
           <li class="nav-item">
-            <a id="navbar-button-logout" class="nav-link">Logout</a>
+            <a id="navbar-button-logout" style="display: none" class="nav-link">Logout</a>
           </li>
         </ul>
       </div>
@@ -46,6 +51,7 @@ const createNavbar = () => {
   `;
   $('#navbar').html(domString);
   navbarEvents();
+  getTasks.getTasksFromDb();
 };
 
 export default createNavbar;
