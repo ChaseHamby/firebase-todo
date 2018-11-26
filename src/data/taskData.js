@@ -9,16 +9,16 @@ const getTasksFromDb = () => new Promise((resolve, reject) => {
     .get(`${baseUrl}/tasks.json`)
     .then((result) => {
       // problem:  result is an object and I need it to be an array
-      const allTasksObject = result.data;
-      const allTasksArray = [];
-      if (allTasksObject != null) {
-        Object.keys(allTasksObject).forEach((task) => {
-          const newTask = allTasksObject[task];
+      const tasksObject = result.data;
+      const tasksArray = [];
+      if (tasksObject != null) {
+        Object.keys(tasksObject).forEach((task) => {
+          const newTask = tasksObject[task];
           newTask.id = task;
-          allTasksArray.push(newTask);
+          tasksArray.push(newTask);
         });
       }
-      resolve(allTasksArray);
+      resolve(tasksArray);
     })
     .catch((err) => {
       reject(err);
@@ -37,4 +37,16 @@ const getSingleTaskFromDb = taskId => new Promise((resolve, reject) => {
     });
 });
 
-export default { getTasksFromDb, getSingleTaskFromDb };
+const deleteTask = taskId => axios.delete(`${baseUrl}/tasks/${taskId}.json`);
+
+const addNewTask = taskObject => axios.post(`${baseUrl}/tasks.json`, JSON.stringify(taskObject));
+
+const updateTask = (taskObject, taskId) => axios.put(`${baseUrl}/tasks/${taskId}.json`, JSON.stringify(taskObject));
+
+export default {
+  getTasksFromDb,
+  getSingleTaskFromDb,
+  deleteTask,
+  addNewTask,
+  updateTask,
+};
