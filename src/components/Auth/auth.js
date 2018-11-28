@@ -26,10 +26,19 @@ const printTask = (dataArray) => {
     `;
   });
   $('#tasks').html(domString);
-  // $('#extra').html(forms.formForTask());
 };
 
 const printTaskSecond = () => {
+  taskData.getTasksFromDb()
+    .then((data) => {
+      printTask(data);
+    })
+    .catch((error) => {
+      console.error('error in getting one friend', error);
+    });
+};
+
+const printSingleTask = () => {
   taskData.getTasksFromDb()
     .then((data) => {
       printTask(data);
@@ -68,6 +77,7 @@ const loginButton = () => {
 export default {
   printTask,
   printTaskSecond,
+  printSingleTask,
   loginButton,
   showTasks,
 };
